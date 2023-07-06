@@ -1,6 +1,6 @@
 
 use ndarray::{Array2};
-use crate::modules::readers::{Atom,Frame};
+use crate::modules::readers::{Frame};
 
 /// Extracts a 2D array of velocities from the provided frames.
 ///
