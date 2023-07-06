@@ -1,0 +1,15 @@
+ITEM: TIMESTEP
+0
+ITEM: NUMBER OF ATOMS
+3
+ITEM: ATOMS id type x y z vx vy vz
+1 1 0.0 0.0 0.0 0.0 0.0 0.0
+2 2 1.0 1.0 1.0 0.0 0.0 0.0
+3 1 2.0 2.0 2.0 0.0 0.0 0.0
+ITEM: TIMESTEP
+1
+ITEM: NUMBER OF ATOMS
+2
+ITEM: ATOMS id mass x y z vx vy vz
+1 16.0 0.0 0.0 0.0 0.0 0.0 0.0
+2 32.0 1.0 1.0 1.0 0.0 0.0 0.0
