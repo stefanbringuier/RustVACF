@@ -1,6 +1,6 @@
 
 use ndarray::{Array2};
-use RustVACF::modules::readers::{AtomType,Atom,Frame};
+use crate::modules::readers::{Atom,Frame};
 
 /// Extracts a 2D array of velocities from the provided frames.
 ///
