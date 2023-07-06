@@ -11,7 +11,7 @@ pub enum AtomType {
 }
 
 // Struct to hold atom data
-#[derive(Debug)]
+#[derive(Debug,Clone)]
 pub struct Atom {
     pub id: i32,
     pub atom_type: AtomType,

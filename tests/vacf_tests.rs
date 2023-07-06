@@ -1,5 +1,4 @@
 use RustVACF::modules::readers::{AtomType,Atom,Frame};
-use RustVACF::modules::velocities::get_velocities;
 use RustVACF::modules::vacf::vacf;
 
 #[cfg(test)]
@@ -8,43 +7,31 @@ mod tests {
 
     #[test]
     fn test_vacf() {
-        let frames = vec![
-            Frame {
-                timestep: 0,
-                num_atoms: 1,
-                atoms: vec![
-                    Atom {
-                        id: 1,
-                        atom_type: AtomType::Integer(1),
-                        x: 1.0,
-                        y: 1.0,
-                        z: 1.0,
-                        vx: 1.0,
-                        vy: 1.0,
-                        vz: 1.0,
-                    },
-                ],
-            },
-            Frame {
-                timestep: 1,
-                num_atoms: 1,
-                atoms: vec![
-                    Atom {
-                        id: 1,
-                        atom_type: AtomType::Integer(1),
-                        x: 2.0,
-                        y: 2.0,
-                        z: 2.0,
-                        vx: 1.0,
-                        vy: 1.0,
-                        vz: 1.0,
-                    },
-                ],
-            },
-        ];
+        // Create 5 atoms with constant velocity
+        let atoms: Vec<Atom> = (0..5).map(|i| Atom {
+            id: i,
+            atom_type: AtomType::Integer(i),
+            x: 0.0,
+            y: 0.0,
+            z: 0.0,
+            vx: 1.0,
+            vy: 2.0,
+            vz: 3.0,
+        }).collect();
 
-        let velocities = get_velocities(&frames);
-        let vacf = vacf(&velocities);
-        assert_eq!(vacf[0], 1.0);
+        // Create 10 frames with these atoms
+        let frames: Vec<Frame> = (0..10).map(|i| Frame {
+            timestep: i as i32,
+            num_atoms: atoms.len(),
+            atoms: atoms.clone(),
+        }).collect();
+
+        // Compute the VACF
+        let vacf = vacf(&frames);
+
+        // The VACF should be constant and equal to the sum of squares of the velocities for all timesteps.
+        let expected_vacf = vec![(1.0 * 1.0) + (2.0 * 2.0) + (3.0 * 3.0); 10];
+        
+        assert_eq!(vacf, expected_vacf);
     }
 }
