@@ -1,5 +1,3 @@
-use ndarray::{Array2};
-use std::io::{self, prelude::*, BufReader};
 use RustVACF::modules::readers::{AtomType,Atom,Frame};
 use RustVACF::modules::velocities::get_velocities;
 use RustVACF::modules::vacf::vacf;
